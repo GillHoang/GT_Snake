@@ -83,7 +83,6 @@ public class LoginPanel extends JPanel {
 
         // Message label
         messageLabel = new JLabel("");
-        messageLabel.setForeground(Color.RED); // Để message hiển thị màu đỏ nếu có lỗi
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -105,11 +104,12 @@ public class LoginPanel extends JPanel {
     }
 
     // Method để hiển thị thông báo lỗi
-    public void displayErrorMessage(String message) {
+    public void displayMessage(String message, Color color) {
+        messageLabel.setForeground(color);
         messageLabel.setText(message);
     }
 
-    public void clearErrorMessage() {
+    public void clearMessage() {
         messageLabel.setText("");
     }
 
@@ -124,7 +124,7 @@ public class LoginPanel extends JPanel {
     }
 
      private void resetFields() {
-        clearErrorMessage();
+        clearMessage();
         usernameField.setText("");
         passwordField.setText("");
     }

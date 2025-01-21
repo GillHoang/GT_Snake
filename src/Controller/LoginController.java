@@ -29,14 +29,14 @@ public class LoginController {
     }
 
     private void handleLogin() {
-        loginPanel.clearErrorMessage();
+        loginPanel.clearMessage();
         String username = loginPanel.getUsernameField().getText();
         String password = String.valueOf(loginPanel.getPasswordField().getPassword());
         if (validateCredentials(username, password)) {
             cardPanel.add(new GamePanel(), "Game");
             cardLayout.show(cardPanel, "Game");
         } else {
-            loginPanel.displayErrorMessage("Invalid username or password.");
+            loginPanel.displayMessage("Invalid username or password.", Color.RED);
         }
     }
 

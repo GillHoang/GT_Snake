@@ -118,11 +118,12 @@ public class RegisterPanel extends JPanel {
     }
 
     // Method để hiển thị thông báo lỗi
-    public void displayErrorMessage(String message) {
+    public void displayMessage(String message, Color color) {
         messageLabel.setText(message);
+        messageLabel.setForeground(color);
     }
 
-    public void clearErrorMessage() {
+    public void clearMessage() {
         messageLabel.setText("");
     }
 
@@ -134,7 +135,7 @@ public class RegisterPanel extends JPanel {
     }
 
     private void resetFields() {
-        clearErrorMessage();
+        clearMessage();
         usernameField.setText("");
         passwordField.setText("");
     }

@@ -3,6 +3,7 @@ package Controller;
 import Model.UserData;
 import View.RegisterPanel;
 
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class RegisterController {
@@ -26,13 +27,13 @@ public class RegisterController {
         String confirmPasswordField = String.valueOf(registerPanel.getConfirmPasswordField().getPassword());
         // Save data
         if (username == null) {
-            registerPanel.displayErrorMessage("Please fill all the fields");
+            registerPanel.displayMessage("Please fill all the fields", Color.RED);
         } else if (password.equals(confirmPasswordField)) {
             userData.setUsername(username);
             userData.setPassword(password);
-            registerPanel.displayErrorMessage("Done! Please back to login");
+            registerPanel.displayMessage("Done! Please back to login", Color.GREEN);
         } else {
-            registerPanel.displayErrorMessage("Password and Confirm Password do not match");
+            registerPanel.displayMessage("Password and Confirm Password do not match", Color.RED);
         }
 
     }
