@@ -12,7 +12,6 @@ public class LoginPanel extends JPanel {
     private final JTextField usernameField;
     private final JPasswordField passwordField;
     private final JButton loginButton;
-    private final JButton registerButton;
     private final JLabel messageLabel;
     private final JPanel cardPanel;
     private final CardLayout cardLayout;
@@ -74,7 +73,7 @@ public class LoginPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL; //reset gbc fill
 
         // Register button
-        registerButton = new JButton("Register");
+        JButton registerButton = new JButton("Register");
         registerButton.addActionListener(btnReg());
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -105,14 +104,6 @@ public class LoginPanel extends JPanel {
         return loginButton;
     }
 
-    public JButton getRegisterButton() {
-        return registerButton;
-    }
-
-    public JLabel getMessageLabel() {
-        return messageLabel;
-    }
-
     // Method để hiển thị thông báo lỗi
     public void displayErrorMessage(String message) {
         messageLabel.setText(message);
@@ -125,9 +116,9 @@ public class LoginPanel extends JPanel {
     private ActionListener btnReg() {
         return e -> {
             resetFields();
-            RegisterPanel registerPanel = new RegisterPanel(cardPanel, cardLayout, userData);
+            RegisterPanel registerPanel = new RegisterPanel(cardPanel, cardLayout);
             cardPanel.add(registerPanel, "Register");
-            new RegisterController(registerPanel, cardPanel, cardLayout, userData);
+            new RegisterController(registerPanel, userData);
             cardLayout.show(cardPanel, "Register");
         };
     }

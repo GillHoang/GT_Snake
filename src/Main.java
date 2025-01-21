@@ -18,7 +18,7 @@ public class Main extends JFrame {
 
         LoginPanel loginPanel = new LoginPanel(cardPanel, cardLayout, userData);
         cardPanel.add(loginPanel, "Login");
-        new LoginController(loginPanel, cardPanel, cardLayout, userData);
+        new LoginController(loginPanel, loginPanel, cardLayout,userData);
 
         this.add(cardPanel);
 

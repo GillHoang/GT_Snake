@@ -1,7 +1,5 @@
 package View;
 
-import Model.UserData;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -11,16 +9,13 @@ public class RegisterPanel extends JPanel {
     private final JPasswordField passwordField;
     private final JPasswordField confirmPasswordField;
     private final JButton registerButton;
-    private final JButton loginButton;
     private final JLabel messageLabel;
     private final JPanel cardPanel;
     private final CardLayout cardLayout;
-    private final UserData userData;
 
-    public RegisterPanel(JPanel cardPanel, CardLayout cardLayout, UserData userData) {
+    public RegisterPanel(JPanel cardPanel, CardLayout cardLayout) {
         super(new GridBagLayout());
 
-        this.userData = userData;
         this.cardPanel = cardPanel;
         this.cardLayout = cardLayout;
 
@@ -85,7 +80,7 @@ public class RegisterPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL; //reset gbc fill
 
         // Login button
-        loginButton = new JButton("Back to login");
+        JButton loginButton = new JButton("Back to login");
         loginButton.addActionListener(btnLogin());
         gbc.gridx = 0;
         gbc.gridy++;
@@ -120,10 +115,6 @@ public class RegisterPanel extends JPanel {
 
     public JButton getRegisterButton() {
         return registerButton;
-    }
-
-    public JLabel getMessageLabel() {
-        return messageLabel;
     }
 
     // Method để hiển thị thông báo lỗi

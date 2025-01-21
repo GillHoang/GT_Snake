@@ -3,19 +3,13 @@ package Controller;
 import Model.UserData;
 import View.RegisterPanel;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class RegisterController {
-    private final JPanel cardPanel;
-    private final CardLayout cardLayout;
     private final RegisterPanel registerPanel;
     private final UserData userData;
 
-    public RegisterController(RegisterPanel registerPanel, JPanel cardPanel, CardLayout cardLayout, UserData userData) {
-        this.cardPanel = cardPanel;
-        this.cardLayout = cardLayout;
+    public RegisterController(RegisterPanel registerPanel,  UserData userData) {
         this.userData = userData;
         this.registerPanel = registerPanel;
 
@@ -23,9 +17,7 @@ public class RegisterController {
     }
 
     private ActionListener btnRegister() {
-        return e -> {
-            handleRegister();
-        };
+        return e -> handleRegister();
     }
 
     private void handleRegister() {
