@@ -1,10 +1,12 @@
 import Controller.LoginController;
+import Model.UserData;
 import View.LoginPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main extends JFrame {
+
     public Main() {
         super("Snake"); // Ten cua project
 
@@ -12,9 +14,11 @@ public class Main extends JFrame {
         CardLayout cardLayout = new CardLayout();
         cardPanel.setLayout(cardLayout);
 
-        LoginPanel loginPanel = new LoginPanel(cardPanel, cardLayout);
-        cardPanel.add(loginPanel, "GS");
-        new LoginController(loginPanel, cardPanel, cardLayout);
+        UserData userData = new UserData(null, null);
+
+        LoginPanel loginPanel = new LoginPanel(cardPanel, cardLayout, userData);
+        cardPanel.add(loginPanel, "Login");
+        new LoginController(loginPanel, cardPanel, cardLayout, userData);
 
         this.add(cardPanel);
 

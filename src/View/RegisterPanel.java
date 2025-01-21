@@ -1,24 +1,23 @@
 package View;
 
-import Controller.RegisterController;
 import Model.UserData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class LoginPanel extends JPanel {
-
+public class RegisterPanel extends JPanel {
     private final JTextField usernameField;
     private final JPasswordField passwordField;
-    private final JButton loginButton;
+    private final JPasswordField confirmPasswordField;
     private final JButton registerButton;
+    private final JButton loginButton;
     private final JLabel messageLabel;
     private final JPanel cardPanel;
     private final CardLayout cardLayout;
     private final UserData userData;
 
-    public LoginPanel(JPanel cardPanel, CardLayout cardLayout, UserData userData) {
+    public RegisterPanel(JPanel cardPanel, CardLayout cardLayout, UserData userData) {
         super(new GridBagLayout());
 
         this.userData = userData;
@@ -30,7 +29,7 @@ public class LoginPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Game title
-        JLabel titleLabel = new JLabel("Welcome to Snake Game");
+        JLabel titleLabel = new JLabel("Register account to play Snake");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -43,43 +42,57 @@ public class LoginPanel extends JPanel {
 
         // Username label
         JLabel usernameLabel = new JLabel("Username:");
-        gbc.gridy++;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         add(usernameLabel, gbc);
 
         // Password label
         JLabel passwordLabel = new JLabel("Password:");
-        gbc.gridy++;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         add(passwordLabel, gbc);
+
+        JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        add(confirmPasswordLabel, gbc);
 
         // Username field
         usernameField = new JTextField(20);
-        gbc.gridy--;
-        gbc.gridx++;
+        gbc.gridx = 1;
+        gbc.gridy = 1;
         add(usernameField, gbc);
 
         // Password Field
         passwordField = new JPasswordField(20);
-        gbc.gridy++;
+        gbc.gridx = 1;
+        gbc.gridy = 2;
         add(passwordField, gbc);
 
+        confirmPasswordField = new JPasswordField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        add(confirmPasswordField, gbc);
+
+        // Register button
+        registerButton = new JButton("Register");
+        gbc.gridx = 0;
+        gbc.gridy++;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridwidth = 2;
+        add(registerButton, gbc);
+        gbc.fill = GridBagConstraints.HORIZONTAL; //reset gbc fill
 
         // Login button
-        loginButton = new JButton("Login");
+        loginButton = new JButton("Back to login");
+        loginButton.addActionListener(btnLogin());
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridwidth = 2;
         add(loginButton, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL; //reset gbc fill
-
-        // Register button
-        registerButton = new JButton("Register");
-        registerButton.addActionListener(btnReg());
-        gbc.gridy++;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        add(registerButton, gbc);
         gbc.fill = GridBagConstraints.HORIZONTAL; //reset gbc fill
 
         // Message label
@@ -101,8 +114,8 @@ public class LoginPanel extends JPanel {
         return passwordField;
     }
 
-    public JButton getLoginButton() {
-        return loginButton;
+    public JPasswordField getConfirmPasswordField() {
+        return confirmPasswordField;
     }
 
     public JButton getRegisterButton() {
@@ -122,17 +135,14 @@ public class LoginPanel extends JPanel {
         messageLabel.setText("");
     }
 
-    private ActionListener btnReg() {
+    private ActionListener btnLogin() {
         return e -> {
             resetFields();
-            RegisterPanel registerPanel = new RegisterPanel(cardPanel, cardLayout, userData);
-            cardPanel.add(registerPanel, "Register");
-            new RegisterController(registerPanel, cardPanel, cardLayout, userData);
-            cardLayout.show(cardPanel, "Register");
+            cardLayout.show(cardPanel, "Login");
         };
     }
 
-     private void resetFields() {
+    private void resetFields() {
         clearErrorMessage();
         usernameField.setText("");
         passwordField.setText("");

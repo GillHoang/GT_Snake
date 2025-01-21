@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.UserData;
 import View.GamePanel;
 import View.LoginPanel;
 
@@ -12,13 +13,13 @@ public class LoginController {
     private final JPanel cardPanel;
     private final CardLayout cardLayout;
     private final LoginPanel loginPanel;
-    private final String username = "user";
-    private final String password = "pass";
+    private final UserData userData;
 
-    public LoginController(LoginPanel loginPanel ,JPanel cardPanel, CardLayout cardLayout) {
+    public LoginController(LoginPanel loginPanel , JPanel cardPanel,CardLayout cardLayout, UserData userData) {
         this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
         this.loginPanel = loginPanel;
+        this.userData = userData;
 
         loginPanel.getLoginButton().addActionListener(btnLogin());
     }
@@ -34,14 +35,15 @@ public class LoginController {
         String username = loginPanel.getUsernameField().getText();
         String password = String.valueOf(loginPanel.getPasswordField().getPassword());
         if (validateCredentials(username, password)) {
-            cardPanel.add(new GamePanel(), "game");
-            cardLayout.show(cardPanel, "game");
+//            cardPanel.add(new GamePanel(), "Game");
+//            cardLayout.show(cardPanel, "Game");
+            loginPanel.displayErrorMessage("oke roi");
         } else {
             loginPanel.displayErrorMessage("Invalid username or password.");
         }
     }
 
     private boolean validateCredentials(String username, String password){
-        return username.equals(this.username) && password.equals(this.password);
+        return username.equals(this.userData.getUsername()) && password.equals(this.userData.getPassword());
     }
 }
