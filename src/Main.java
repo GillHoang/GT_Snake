@@ -1,3 +1,4 @@
+import Controller.LoginController;
 import View.LoginPanel;
 
 import javax.swing.*;
@@ -11,7 +12,9 @@ public class Main extends JFrame {
         CardLayout cardLayout = new CardLayout();
         cardPanel.setLayout(cardLayout);
 
-        cardPanel.add(new LoginPanel(cardPanel, cardLayout), "GS");
+        LoginPanel loginPanel = new LoginPanel(cardPanel, cardLayout);
+        cardPanel.add(loginPanel, "GS");
+        new LoginController(loginPanel, cardPanel, cardLayout);
 
         this.add(cardPanel);
 

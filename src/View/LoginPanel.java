@@ -2,7 +2,6 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
 
@@ -27,6 +26,7 @@ public class LoginPanel extends JPanel {
 
         // Game title
         JLabel titleLabel = new JLabel("Welcome to Snake Game");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.NONE;
@@ -44,7 +44,7 @@ public class LoginPanel extends JPanel {
         // Password label
         JLabel passwordLabel = new JLabel("Password:");
         gbc.gridy++;
-        add(passwordLabel,gbc);
+        add(passwordLabel, gbc);
 
         // Username field
         usernameField = new JTextField(20);
@@ -55,7 +55,7 @@ public class LoginPanel extends JPanel {
         // Password Field
         passwordField = new JPasswordField(20);
         gbc.gridy++;
-        add(passwordField,gbc);
+        add(passwordField, gbc);
 
 
         // Login button
@@ -65,7 +65,6 @@ public class LoginPanel extends JPanel {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
-        loginButton.addActionListener(btnLoginAction());
         add(loginButton, gbc);
         gbc.fill = GridBagConstraints.HORIZONTAL; //reset gbc fill
 
@@ -77,7 +76,7 @@ public class LoginPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridwidth = 2; // Cho phép label trải dài hết 2 cột
-        add(messageLabel,gbc);
+        add(messageLabel, gbc);
     }
 
     // Getters để Controller có thể lấy dữ liệu từ View
@@ -85,7 +84,7 @@ public class LoginPanel extends JPanel {
         return usernameField;
     }
 
-    public JPasswordField getPasswordField(){
+    public JPasswordField getPasswordField() {
         return passwordField;
     }
 
@@ -102,21 +101,8 @@ public class LoginPanel extends JPanel {
         messageLabel.setText(message);
     }
 
-    public void clearErrorMessage(){messageLabel.setText("");}
-
-    private ActionListener btnLoginAction() {
-        return e -> {
-            String username = usernameField.getText();
-            String password = String.valueOf(passwordField.getPassword());
-
-            if (username.isEmpty() || password.isEmpty()) {
-                displayErrorMessage("Username and Password are required");
-            } else if (username.equalsIgnoreCase(this.username) && password.equalsIgnoreCase(this.password)) {
-                cardPanel.add(new GamePanel(), "game");
-                cardLayout.show(cardPanel, "game");
-            } else {
-                displayErrorMessage("Username and Password are incorrect");
-            }
-        };
+    public void clearErrorMessage() {
+        messageLabel.setText("");
     }
+
 }
